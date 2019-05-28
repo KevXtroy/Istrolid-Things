@@ -9,7 +9,7 @@ setInterval(function() {
 setInterval(function() {
   for (var i = 0; i < swearWords.length; i ++) {
     if (chat.lines[chat.lines.length - 1].text.indexOf(swearWords[i]) !== 0) {
-      rootNet.send("message", {text: hat.lines[chat.lines.length - 1].name + ", hey you can't say that, this is a Christian game.", channel: chat.channel});
+      rootNet.send("message", {text: chat.lines[chat.lines.length - 1].name + ", hey you can't say that, this is a Christian game.", channel: chat.channel});
     }
   }
 }, 500)
