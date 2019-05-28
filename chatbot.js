@@ -10,6 +10,7 @@ setInterval(function() {
   for (var i = 0; i < swearWords.length; i ++) {
     if (chat.lines[chat.lines.length - 1].text.indexOf(swearWords[i]) !== 0) {
       rootNet.send("message", {text: chat.lines[chat.lines.length - 1].name + ", hey you can't say that, this is a Christian game.", channel: chat.channel});
+      chat.lines.push({text: "", channel: chat.channel, color: [0, 0, 0, 255], name: "Bible", time: 1});
     }
   }
 }, 500)
