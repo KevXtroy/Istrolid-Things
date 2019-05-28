@@ -4,9 +4,4 @@ setInterval(function() {
     rootNet.send("message", {text: bibleVerses[Math.round(Math.random() * (bibleVerses.length - 1))], channel: chat.channel});
     chat.lines.push({text: "", channel: chat.channel, color: [0, 0, 0, 255], name: "Bible", time: 1});
   }
-  
-  if (chat.lines[chat.lines.length - 1].text.split(" ")[0] === "f" && chat.lines[chat.lines.length - 2].text.split(" ")[0] === "f") {
-    rootNet.send("message", {text: "f", channel: chat.channel});
-    chat.lines.push({text: "", channel: chat.channel, color: [0, 0, 0, 255], name: "Bible", time: 1});
-  }
 }, 1000)
