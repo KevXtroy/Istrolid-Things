@@ -1,5 +1,5 @@
 setInterval(function() {
-  if (chat.lines[chat.lines.length - 1].text.split(" ")[0] === "!verse" && chattedTest) {
+  if (chat.lines[chat.lines.length - 1].text.split(" ")[0] === "!verse") {
     rootNet.send("message", {text: "Random bible verse", channel: chat.channel});
     chat.lines.push({text: "", channel: chat.channel, color: [0, 0, 0, 255], name: "Bible", time: 1});
   }
