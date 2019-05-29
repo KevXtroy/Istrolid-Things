@@ -4,13 +4,10 @@ setInterval(function() {
   if (chat.lines[chat.lines.length - 1].text.split(" ")[0] === "!verse") {
     rootNet.send("message", {text: bibleVerses[Math.round(Math.random() * (bibleVerses.length - 1))], channel: chat.channel});
     chat.lines.push({text: "", channel: chat.channel, color: [0, 0, 0, 255], name: "Bible", time: 1});
-  }
-}, 100)
-setInterval(function() {
-  for (var i = 0; i < swearWords.length; i ++) {
+  }for (var i = 0; i < swearWords.length; i ++) {
     if (chat.lines[chat.lines.length - 1].text.toLowerCase().split(swearWords[i]).length > 1) {
       rootNet.send("message", {text: chat.lines[chat.lines.length - 1].name + ", hey you can't say that, this is a Christian game.", channel: chat.channel});
       chat.lines.push({text: "", channel: chat.channel, color: [0, 0, 0, 255], name: "Bible", time: 1});
     }
   }
-}, 500)
+}, 200)
