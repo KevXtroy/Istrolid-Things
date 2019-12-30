@@ -14,4 +14,4 @@ setInterval(() => {
    yesno = true;
   }
  }
-}, 1000);
+}, 100);
