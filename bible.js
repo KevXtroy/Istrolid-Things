@@ -8,7 +8,7 @@ function getVerse() {
 }
 function checkSwearWord(s) {
   var swearWords = ["nig", "ass", "fuck", "jew", "gay", "homo", "fag", "bitch", "shit", "cock", "dick", "puss"];
-  for (var word in swearWords) {
+  for (var word of swearWords) {
     if (s.toLowerCase().indexOf(word) !== -1) return true;
   }
   return false;
