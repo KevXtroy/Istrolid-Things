@@ -65,7 +65,7 @@ function message(line) {
           }
         }
       }
-      if (output[i + 1] === "" || i === 2)
+      if ((output[i + 1] === "" || i === 2) && output[i] !== "")
         output[i] += " LOL";
       if (output[i] !== "")
       sendMessage(line.name + ": " + output[i]);
