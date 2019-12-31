@@ -90,4 +90,4 @@ setInterval(()=>{
     rootNet.send("message", messageQueue[0]);
     messageQueue.splice(0, 1);
   }
-}, 300);
+}, 500);
