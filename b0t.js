@@ -8,9 +8,9 @@ function message(line) {
   var args = line.text.split(" ");
   var command = args[0].toLowerCase();
   
-  if (command === "bping") {
+  if (command === "bping") { //ping, pong!
     sendMessage(line.name + " pong!");
-  } else if (line.text.startsWith("owoify")) {
+  } else if (line.text.startsWith("owoify")) { //owoify, furry talk
     var output = (line.name + ": " + line.text.slice(6)).split(" ");
     if (line.text.startsWith("owoify^")) {
       var n = parseInt(command.slice(7), 10) > 0 ? parseInt(command.slice(7), 10) + 1 : 2;
@@ -31,7 +31,7 @@ function message(line) {
       }
     }
     sendMessage(output.join(" "));
-  } else if (line.text.startsWith("therxify")) {
+  } else if (line.text.startsWith("therxify")) { //therxify, how therx talks
     var output = line.text.slice(8).split(" ");
     if (line.text.startsWith("therxify^")) {
       var n = parseInt(command.slice(9), 10) > 0 ? parseInt(command.slice(9), 10) + 1 : 2;
@@ -69,7 +69,12 @@ function message(line) {
         output[i] += " LOL";
       sendMessage(line.name + ": " + output[i]);
     }
+  } else if (command === "im" || command === "i'm") { //hi __ i'm b0t
+    sendMessage("Hi " + args[1] + " I'm b0t!");
+  } else if (line.text.startsWith("i am")) {
+    sendMessage("Hi " + args[2] + " I'm b0t!");
   }
+  
 }
 
 var lastLine = {};
