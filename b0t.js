@@ -31,6 +31,44 @@ function message(line) {
       }
     }
     sendMessage(output.join(" "));
+  } else if (line.text.startsWith("therxify")) {
+    var output = line.text.slice(8).split(" ");
+    if (line.text.startsWith("therxify^")) {
+      var n = parseInt(command.slice(9), 10) > 0 ? parseInt(command.slice(9), 10) + 1 : 2;
+      if (n < chat.lines.length)
+        output = chat.lines[chat.lines.length - n].text.split(" ");
+    }
+    var keyboard = [
+      "qwertyuiop",
+      "asdfghjkl;",
+      "zzxcvbnnmm"
+    ];
+    var splitSize = output.length > 5 ? Math.ceil(output.length / 3) : 6; //3 chunks max
+    output = [output.slice(0, splitSize).join(" "), output.slice(splitSize, splitSize * 2).join(" "), output.slice(splitSize * 2, splitSize * 3 + 1).join(" ")];
+    for (var i = 0; i < output.length; i ++) {
+      for (var j = 0; j < output[i].length; j ++) {
+        if (Math.random() < 0.1) {
+          var letter = output[i][j];
+          var index = -1;
+          if (keyboard[0].includes(letter)) {
+            index = 0;
+          } else if (keyboard[1].includes(letter)) {
+            index = 1;
+          } else if (keyboard[2].includes(letter)) {
+            index = 2;
+          }
+          if (index !== -1) {
+            var position = [index + Math.floor(Math.random() * 3 - 1), keyboard[index].indexOf(letter) + Math.floor(Math.random() * 3 - 1)];
+            if (keyboard[position[0]] !== undefined && keyboard[position[0]][position[1]] !== undefined) {
+              output[i] = output[i].slice(0, j) + keyboard[position[0]][position[1]] + output[i].slice(j + 1);
+            }
+          }
+        }
+      }
+      if ((output[i + 1] === "" || i === 2) && output[i] !== "")
+        output[i] += " LOL";
+      sendMessage(output[i]);
+    }
   }
 }
 
