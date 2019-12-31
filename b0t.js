@@ -9,13 +9,13 @@ function message(line) {
   var command = args[0].toLowerCase();
   
   if (command === "bping") {
-    sendMessage("pong!");
+    sendMessage(line.name + " pong!");
   } else if (line.text.startsWith("owoify")) {
-    var output = line.text.slice(6).replace(/r/g, "w").split(" ");
+    var output = (line.name + ": " + line.text.slice(6)).split(" ");
     if (line.text.startsWith("owoify^")) {
       var n = parseInt(command.slice(7), 10) > 0 ? parseInt(command.slice(7), 10) + 1 : 2;
       if (n < chat.lines.length)
-        output = chat.lines[chat.lines.length - n].text.replace(/r/g, "w").split(" ");
+        output = (chat.lines[chat.lines.length - n].name + ": " + chat.lines[chat.lines.length - n].text).split(" ");
     }
     for (var i in output) {
       for (var j = 0; j < output[i].length; j ++) {
