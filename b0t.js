@@ -47,7 +47,7 @@ function message(line) {
     output = [output.slice(0, splitSize).join(" "), output.slice(splitSize, splitSize * 2).join(" "), output.slice(splitSize * 2, splitSize * 3 + 1).join(" ")];
     for (var i = 0; i < output.length; i ++) {
       for (var j = 0; j < output[i].length; j ++) {
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.15) {
           var letter = output[i][j];
           var index = -1;
           if (keyboard[0].includes(letter)) {
@@ -67,7 +67,7 @@ function message(line) {
       }
       if ((output[i + 1] === "" || i === 2) && output[i] !== "")
         output[i] += " LOL";
-      sendMessage(output[i]);
+      sendMessage(line.name + ": " + output[i]);
     }
   }
 }
@@ -85,4 +85,4 @@ setInterval(()=>{
     rootNet.send("message", messageQueue[0]);
     messageQueue.splice(0, 1);
   }
-}, 200);
+}, 300);
