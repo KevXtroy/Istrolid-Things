@@ -70,6 +70,21 @@ function message(line) {
       if (output[i] !== "")
       sendMessage(line.name + ": " + output[i]);
     }
+  } else if (line.text.startsWith("epochify")) {
+    var output = (line.name + ": " + line.text.slice(8)).split(" ");
+    if (line.text.startsWith("epochify^")) {
+      var n = parseInt(command.slice(9), 10) > 0 ? parseInt(command.slice(9), 10) + 1 : 2;
+      if (n < chat.lines.length)
+        output = (chat.lines[chat.lines.length - n].name + ": " + chat.lines[chat.lines.length - n].text).split(" ");
+    }
+    for (var i in output) {
+      if (Math.random() < 0.05) {
+        output[i] += " niqqa ";
+      } else if (Math.random() < 0.1) {
+        output[i] += " 🤡 ";
+      }
+    }
+    sendMessage(output.join(" ") + " 🤡🤡🤡");
   } else if (command === "im" || command === "i'm") { //hi __ i'm b0t
     sendMessage("Hi " + args[1] + " I'm b0t!");
   } else if (line.text.startsWith("i am")) {
