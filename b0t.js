@@ -65,8 +65,9 @@ function message(line) {
           }
         }
       }
-      if ((output[i + 1] === "" || i === 2) && output[i] !== "")
+      if (output[i + 1] === "" || i === 2)
         output[i] += " LOL";
+      if (output[i] !== "")
       sendMessage(line.name + ": " + output[i]);
     }
   } else if (command === "im" || command === "i'm") { //hi __ i'm b0t
