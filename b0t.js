@@ -13,8 +13,9 @@ function message(line) {
   } else if (line.text.startsWith("owoify")) {
     var output = line.text.slice(6).replace(/r/g, "w").split(" ");
     if (line.text.startsWith("owoify^")) {
-      var n = parseInt(command.slice(7, command.indexOf(" ")), 10) > 0 ? parseInt(command.slice(7, command.indexOf(" ")), 10) + 1 : 2;
-      output = chat.lines[chat.lines.length - n].text.replace(/r/g, "w").split(" ");
+      var n = parseInt(command.slice(7), 10) > 0 ? parseInt(command.slice(7), 10) + 1 : 2;
+      if (n < chat.lines.length)
+        output = chat.lines[chat.lines.length - n].text.replace(/r/g, "w").split(" ");
     }
     for (var i in output) {
       for (var j = 0; j < output[i].length; j ++) {
