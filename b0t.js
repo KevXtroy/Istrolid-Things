@@ -8,13 +8,28 @@ function message(line) {
   var args = line.text.split(" ");
   var command = args[0].toLowerCase();
   
-  switch(command) {
-    case "bping":
-      sendMessage("pong!");
-    break;
-    case "owoify":
-      sendMessage(args[1].replace(\a\, "@"));
-    break;
+  if (command === "bping") {
+    sendMessage("pong!");
+  } else if (line.text.startsWith("owoify")) {
+    var output = line.text.slice(6).replace(/r/g, "w").split(" ");
+    if (line.text.startsWith("owoify^")) {
+      var n = parseInt(command.slice(7, command.indexOf(" ")), 10) > 0 ? parseInt(command.slice(7, command.indexOf(" ")), 10) + 1 : 2;
+      output = chat.lines[chat.lines.length - n].text.replace(/r/g, "w").split(" ");
+    }
+    for (var i in output) {
+      for (var j = 0; j < output[i].length; j ++) {
+        if (j > 0 && "aeiou".indexOf(output[i][j]) !== -1 && output[i][j - 1].toLowerCase() !== "w") {
+          output[i] = output[i].slice(0, j) + "w" + output[i].slice(j);
+          break;
+        }
+      }
+      if (Math.random() < 0.05) {
+        output[i] += " OwO ";
+      } else if (Math.random() < 0.1) {
+        output[i] += " ~nuzzles~ ";
+      }
+    }
+    sendMessage(output.join(" "));
   }
 }
 
@@ -31,4 +46,4 @@ setInterval(()=>{
     rootNet.send("message", messageQueue[0]);
     messageQueue.splice(0, 1);
   }
-}, 100);
+}, 200);
